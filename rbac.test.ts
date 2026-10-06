@@ -20,6 +20,7 @@ import {
   grants,
   RbacError,
   revokeRole,
+  usersAdminResource,
   usersWithRoles,
 } from './index.js';
 
@@ -167,5 +168,31 @@ describe('adapters', () => {
     expect((await permissionResponse(null, 'admin:access'))?.status).toBe(401);
     expect((await permissionResponse({ id: nobody }, 'admin:access'))?.status).toBe(403);
     expect(await permissionResponse({ id: owner }, 'admin:access')).toBeNull();
+  });
+});
+
+describe('usersAdminResource', () => {
+  const ctxFor = (id: string) => ({ user: { id, email: null, name: null }, can: (p: string) => can(id, p) });
+
+  it('lists users with roles and grants/revokes through the escalation rules', async () => {
+    const owner = await newUser();
+    await bootstrapOwner(owner);
+    const editor = await newUser();
+    await grantRole(owner, editor, 'editor');
+    const other = await newUser();
+
+    const list = await usersAdminResource.list({ page: 1, pageSize: 10 }, ctxFor(owner));
+    expect(list.total).toBe(3);
+    expect(list.rows.map((u) => u.roles)).toEqual([['owner'], ['editor'], []]);
+    // El editor no ve usuarios.
+    expect(await code(usersAdminResource.list({ page: 1, pageSize: 10 }, ctxFor(editor)))).toBe('forbidden');
+
+    const grant = usersAdminResource.actions!.find((a) => a.name === 'grant-role')!;
+    const revoke = usersAdminResource.actions!.find((a) => a.name === 'revoke-role')!;
+    expect((await grant.run(other, { role: 'support' }, ctxFor(owner))).roles).toEqual(['support']);
+    expect(await code(grant.run(other, { role: 'owner' }, ctxFor(editor)))).toBe('forbidden');
+    expect(await code(revoke.run(owner, { role: 'owner' }, ctxFor(owner)))).toBe('last_owner');
+    expect((await revoke.run(other, { role: 'support' }, ctxFor(owner))).roles).toEqual([]);
+    expect(usersAdminResource.title((await usersAdminResource.get(other, ctxFor(owner)))!)).toBe('U'); // sin email: el nombre
   });
 });

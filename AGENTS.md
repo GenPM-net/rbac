@@ -11,6 +11,7 @@ escalation. Default roles: owner, admin, editor, support, author. Not authentica
 - `defaults.ts` — default roles and their permissions.
 - `schema.ts` — tables `roles`, `user_roles`. Depends on `../db` and `../auth`.
 - `adapters/hono.ts` — `requirePermission(perm)` middleware. `adapters/next.ts` — `requirePermission(user, perm)`, `permissionResponse(user, perm)`.
+- `admin.ts` — `usersAdminResource` for @core/admin (users with roles; grant/revoke actions with `users:manage`).
 
 ## Integration
 1. Generate and apply migrations (see `src/lib/db/AGENTS.md`).
