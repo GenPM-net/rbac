@@ -1,7 +1,7 @@
 // Adaptador Next.js (App Router), sin importar `next`.
 //   Server Component / Server Action: `const user = await getUser(await cookies()); await requirePermission(user, 'posts:publish');`
 //   Route handler: `const denied = await permissionResponse(user, 'orders:refund'); if (denied) return denied;`
-import { can, type Grants, getGrants, type PermissionContext, RbacError } from '../index.js';
+import { can, type Grants, getGrants, type PermissionContext, RbacError } from '../index.ts';
 
 type MaybeUser = { id: string } | null | undefined;
 

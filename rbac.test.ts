@@ -1,12 +1,12 @@
 import { Hono } from 'hono';
 import { beforeEach, describe, expect, it } from 'vitest';
-import * as authSchema from '../auth/schema.js';
-import { sessionMiddleware } from '../auth/adapters/hono.js';
-import { createSession, generateSessionToken, SESSION_COOKIE, upsertOAuthUser } from '../auth/index.js';
-import { testDb } from '../db/__fixtures__/pglite.js';
-import { requirePermission } from './adapters/hono.js';
-import { permissionResponse, requirePermission as requireNext } from './adapters/next.js';
-import * as schema from './schema.js';
+import * as authSchema from '../auth/schema.ts';
+import { sessionMiddleware } from '../auth/adapters/hono.ts';
+import { createSession, generateSessionToken, SESSION_COOKIE, upsertOAuthUser } from '../auth/index.ts';
+import { testDb } from '../db/__fixtures__/pglite.ts';
+import { requirePermission } from './adapters/hono.ts';
+import { permissionResponse, requirePermission as requireNext } from './adapters/next.ts';
+import * as schema from './schema.ts';
 import {
   assertCan,
   bootstrapOwner,
@@ -22,7 +22,7 @@ import {
   revokeRole,
   usersAdminResource,
   usersWithRoles,
-} from './index.js';
+} from './index.ts';
 
 beforeEach(async () => {
   process.env.AUTH_SECRET = 'x'.repeat(40);

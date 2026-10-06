@@ -1,7 +1,7 @@
 // Adaptador Hono: `requirePermission('posts:publish')` después de `sessionMiddleware` de @core/auth.
 import type { MiddlewareHandler } from 'hono';
-import type { AuthVariables } from '../../auth/adapters/hono.js';
-import { can, type Grants, getGrants } from '../index.js';
+import type { AuthVariables } from '../../auth/adapters/hono.ts';
+import { can, type Grants, getGrants } from '../index.ts';
 
 export type RbacVariables = AuthVariables & { grants: Grants | null };
 

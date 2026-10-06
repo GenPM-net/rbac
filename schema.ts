@@ -1,7 +1,7 @@
 // Tablas de @core/rbac. Las recoge drizzle-kit vía src/lib/db/drizzle.config.ts.
 import { boolean, index, integer, jsonb, pgTable, primaryKey, text } from 'drizzle-orm/pg-core';
-import { users } from '../auth/index.js';
-import { primaryId, timestamps } from '../db/index.js';
+import { users } from '../auth/index.ts';
+import { primaryId, timestamps } from '../db/index.ts';
 
 export const roles = pgTable('roles', {
   id: primaryId('rol'),

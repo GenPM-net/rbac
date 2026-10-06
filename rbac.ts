@@ -1,9 +1,9 @@
 // Roles de usuario en BD y comprobaciones con jerarquía (anti escalada de privilegios).
 import { and, count, eq, inArray } from 'drizzle-orm';
-import { type Executor, getDb, withTransaction } from '../db/index.js';
-import { DEFAULT_ROLES, OWNER_ROLE, type RoleDefinition } from './defaults.js';
-import { grants, isValidPermission, type PermissionContext } from './permissions.js';
-import { type Role, roles, userRoles } from './schema.js';
+import { type Executor, getDb, withTransaction } from '../db/index.ts';
+import { DEFAULT_ROLES, OWNER_ROLE, type RoleDefinition } from './defaults.ts';
+import { grants, isValidPermission, type PermissionContext } from './permissions.ts';
+import { type Role, roles, userRoles } from './schema.ts';
 
 export type RbacErrorCode = 'forbidden' | 'unknown_role' | 'last_owner' | 'invalid_permission' | 'system_role';
 

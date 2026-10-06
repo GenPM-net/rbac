@@ -2,11 +2,11 @@
 // Las reglas de escalada (rango, último owner) son las de grantRole/revokeRole: el panel no las duplica.
 import { asc, count, eq, ilike, inArray, or } from 'drizzle-orm';
 import { z } from 'zod';
-import { users } from '../auth/schema.js';
-import type { AdminContext, AdminResource } from '../contracts/index.js';
-import { getDb } from '../db/index.js';
-import { grantRole, RbacError, revokeRole } from './rbac.js';
-import { roles, userRoles } from './schema.js';
+import { users } from '../auth/schema.ts';
+import type { AdminContext, AdminResource } from '../contracts/index.ts';
+import { getDb } from '../db/index.ts';
+import { grantRole, RbacError, revokeRole } from './rbac.ts';
+import { roles, userRoles } from './schema.ts';
 
 export type UserAdminRow = { id: string; email: string | null; name: string | null; roles: string[]; createdAt: Date };
 
