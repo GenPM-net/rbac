@@ -1,0 +1,28 @@
+{
+  "$": 1,
+  "n": "@core/rbac",
+  "v": "1.0.0",
+  "s": {
+    "en": "Roles and permissions on top of @core/auth: wildcards, own-only rules and escalation-safe grants",
+    "es": "Roles y permisos sobre @core/auth: comodines, permisos sobre lo propio y concesiones sin escalada",
+    "pt-BR": "Papéis e permissões sobre @core/auth: curingas, regras de próprio dono e concessões sem escalada",
+    "fr": "Rôles et permissions sur @core/auth : jokers, droits sur ses propres données, attributions sans escalade",
+    "de": "Rollen und Rechte auf @core/auth: Platzhalter, Eigentümer-Regeln und Vergabe ohne Rechteausweitung",
+    "ja": "@core/auth 上のロールと権限：ワイルドカード、本人限定ルール、権限昇格を防ぐ付与",
+    "zh-CN": "基于 @core/auth 的角色与权限：通配符、仅限本人规则、防提权授予",
+    "ko": "@core/auth 기반 역할과 권한: 와일드카드, 본인 전용 규칙, 권한 상승 방지 부여"
+  },
+  "d": "src/lib/rbac",
+  "l": "MIT",
+  "k": [
+    "rbac",
+    "roles",
+    "permissions",
+    "authorization",
+    "admin"
+  ],
+  "g": {
+    "@core/db": "^1.0.0",
+    "@core/auth": "^1.1.0"
+  }
+}
