@@ -131,6 +131,8 @@ describe('privilege escalation', () => {
     await bootstrapOwner(owner);
     expect(await code(defineRole({ key: 'bad', label: 'Bad', rank: 10, permissions: ['Posts:Read'] }))).toBe('invalid_permission');
     await defineRole({ key: 'translator', label: 'Translator', rank: 10, permissions: ['admin:access', 'posts:update'] });
+    // Colecciones con `_` (site_settings de @core/site) se pueden conceder.
+    await defineRole({ key: 'site-editor', label: 'Site editor', rank: 10, permissions: ['admin:access', 'site_settings:*'] });
     const t = await newUser();
     await grantRole(owner, t, 'translator');
     expect(await can(t, 'posts:update')).toBe(true);

@@ -5,7 +5,8 @@ export type PermissionContext = {
   ownerId?: string | null;
 };
 
-const PERMISSION_RE = /^(\*|[a-z][a-z0-9-]*(:([a-z][a-z0-9-]*|\*))?(:own)?)$/;
+// Recurso con `_` permitido: colecciones como `site_settings` (@core/site).
+const PERMISSION_RE = /^(\*|[a-z][a-z0-9_-]*(:([a-z][a-z0-9-]*|\*))?(:own)?)$/;
 
 export function isValidPermission(p: string): boolean {
   return PERMISSION_RE.test(p);
